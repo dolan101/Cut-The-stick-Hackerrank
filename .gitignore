@@ -1,32 +1,52 @@
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
+void swap(int x, int y)
+    {
+    int temp=x;
+    x=y;
+    y=temp;
+}
+int partition(int a[],int l,int h)
+    {
+    int i, p=a[h];
+    int pi=l-1;
+    for(i=l;i<=h;i++)
+        {
+        if(a[i]<=p)
+            pi=pi+1 ;
+            swap(a[pi],a[i]);
+    }
+    swap(a[pi+1],a[p]);
+    return pi+1;
+}
+void Quicksort(int a[],int l,int h)
+    {int pi;
+    if(l<h)
+        {
+        pi=partition(a,l,h);
+         Quicksort(a,l,pi-1);
+         Quicksort(a,pi+1,h);
+    }
+}
 
-# Precompiled Headers
-*.gch
-*.pch
+int main() {
+    int i,n,count=1;
+    scanf("%d",&n);
+    int a[n];
+    for(i=1;i<=n;i++)
+        {
+        scanf("%d",&a[i]);
+    }
+    Quicksort(a,1,n);
+   // while(i>n)
+       // {
+        for(i=count;i<=n;i++)
+            {
+            if(a[i]==0)
+                count++;
+            else
+                printf("%d\n",a[i]);
+        }
+        //i=count;
+    //}
+    return 0;
+}
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
-# Debug files
-*.dSYM/
